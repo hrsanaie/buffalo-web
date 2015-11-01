@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Buffalo infosec corp</title>
+    <script type="text/javascript" src="jquery.js"></script>
+
+</head>
+<body>
+<h2>welcome to Buffalo infosecurity corporation</h2>
+<fieldset style="width:30%;height:30%">
+    <legend>Login Form:</legend>
+    <br>
+    username: <input type="text" id="username" name="username"><br><br>
+    password: <input type="password" id="password" name="password"><br><br>
+    <input type="submit" id="submit" name="submit" value="submit"><br>
+</fieldset>
+<div id="response"></div>
+<script type="text/javascript">
+
+    try {
+        $(document).ready(function () {
+
+
+            $('#submit').click(function () {
+                var obj = new Object();
+                obj.username = $('#username').val();
+                obj.password = $('#password').val();
+//                obj=[{"username":"ali", "password":"teflan"},
+//                    {"username":"hamid", "password":"sanaie"},
+//                    {"username":"amir", "password":"mansouri"},
+//                    {"username":"moein", "password":"mahmoodi"},
+//                    {"username":"koosha", "password":"marmolak"}];
+                $.ajax(
+                        {
+                            url: "http://localhost:7419/loginKon",
+                            data: JSON.stringify(obj),
+                            type: 'POST',
+                            contentype: "application/jsonp",
+                            datatype: "jsonp",
+                            success: function (res) {
+                                // window.location="desktop.html";
+
+                                console.log(res);
+
+                            },
+                            error: function () {
+                                alert("error");
+                            }
+
+                        }
+                )
+                ;
+            });
+
+
+        });
+    } catch (exc) {
+        console.log(exc)
+    }
+
+
+</script>
+</body>
+</html>
